@@ -163,7 +163,7 @@ Here are code snippets for some common installation methods (use only one):
     doc = --<function: adds modeline>,
 
     -- Applied before output file is written. Takes lines array as argument.
-    write_pre = --<function: currently returns its input>,
+    write_pre = --<function: removes delimiters at the top>,
 
     -- Applied after output help file is written. Takes doc as argument.
     write_post = --<function: various convenience actions>,

@@ -397,8 +397,14 @@ MiniDoc.config = {
     --minidoc_replace_end
 
     -- Applied before output file is written. Takes lines array as argument.
-    --minidoc_replace_start write_pre = --<function: currently returns its input>,
-    write_pre = function(l) return l end,
+    --minidoc_replace_start write_pre = --<function: removes delimiters at the top>,
+    write_pre = function(l)
+      -- Remove first two lines with `======` and `------` delimiters to comply
+      -- with `:h local-additions` template
+      if l[1]:find('^=+$') ~= nil then table.remove(l, 1) end
+      if l[1]:find('^-+$') ~= nil then table.remove(l, 1) end
+      return l
+    end,
     --minidoc_replace_end
 
     -- Applied after output help file is written. Takes doc as argument.
